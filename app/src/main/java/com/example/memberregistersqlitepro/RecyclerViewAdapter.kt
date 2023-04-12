@@ -7,21 +7,25 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.memberregistersqlitepro.databinding.ItemRecyclerBinding
 
-class RecyclerViewAdapter(val mutableList: MutableList<Member>):
+class RecyclerViewAdapter(var dataList: MutableList<Member>) :
     RecyclerView.Adapter<RecyclerViewAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-     val binding =ItemRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent,false)
+        val binding = ItemRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return Holder(binding)
     }
 
-    override fun getItemCount(): Int =mutableList.size
+    override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-     val binding = holder.binding
-        binding.textName.text= mutableList.get(position).name
-
-
+        val binding = holder.binding
+        binding.tvId.text=dataList.get(position).id
+        binding.tvName.text = dataList.get(position).name
+        binding.tvPhone.text = dataList.get(position).phone
+        binding.tvEmail.text = dataList.get(position).email
+        binding.tvAddress.text = dataList.get(position).address
+        binding.tvLevel.text = dataList.get(position).level
     }
-    inner class Holder(val binding:ItemRecyclerBinding): RecyclerView.ViewHolder(binding.root)
+
+    inner class Holder(val binding: ItemRecyclerBinding) : RecyclerView.ViewHolder(binding.root)
 }
